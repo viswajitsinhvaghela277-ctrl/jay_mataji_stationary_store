@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PaperPoint | Stationery Store</title>
+  <meta name="description" content="Buy notebooks, pens, art supplies, school items and office stationery online at PaperPoint." />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    :root {
+      --primary: #2f6f4f;
+      --primary-dark: #245740;
+      --accent: #f4b942;
+      --light: #f7f5f0;
+      --text: #333;
+      --muted: #666;
+    }
+
+    body {
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+
+    /* Header */
+    header {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+    }
+
+    nav a {
+      font-weight: 600;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .cart-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(120deg, var(--primary), #3f8a63);
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 52px);
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin: 0 auto 24px;
+      opacity: 0.92;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #222;
+      padding: 13px 26px;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .btn:hover {
+      background: #e5a92f;
+      transform: translateY(-2px);
+    }
+
+    /* Sections */
+    section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 32px;
+      color: var(--primary);
+    }
+
+    .section-title p {
+      color: var(--muted);
+    }
+
+    /* Products */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+      transition: transform 0.2s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-image {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      background: #eef4f0;
+    }
+
+    .product-info {
+      padding: 18px;
+    }
+
+    .product-info h3 {
+      font-size: 19px;
+      margin-bottom: 6px;
+    }
+
+    .product-info p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price {
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .add-cart {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 9px 14px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .add-cart:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Features */
+    .features {
+      background: white;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      text-align: center;
+    }
+
+    .feature {
+      padding: 24px;
+      background: var(--light);
+      border-radius: 12px;
+    }
+
+    .feature h3 {
+      margin: 10px 0;
+      color: var(--primary);
+    }
+
+    /* Contact */
+    .contact-form {
+      max-width: 620px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Footer */
+    footer {
+      background: #22332b;
+      color: #d9e4de;
+      padding: 40px 0 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-bottom: 25px;
+    }
+
+    footer h4 {
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer li {
+      margin-bottom: 8px;
+    }
+
+    .copyright {
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 18px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+      .nav {
+        flex-direction: column;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <div class="logo">Paper<span>Point</span></div>
+
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Shop</a></li>
+          <li><a href="#features">Why Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="cart-btn">Cart: <span id="cart-count">0</span></button>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container">
+      <h1>Beautiful Stationery for Every Idea</h1>
+      <p>Notebooks, pens, planners, art supplies, school essentials and office products—all in one place.</p>
+      <a href="#products" class="btn">Shop Now</a>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="container">
+      <div class="section-title">
+        <h2>Featured Products</h2>
+        <p>Popular stationery picked for school, office and creative work.</p>
+      </div>
+
+      <div class="products">
+        <article class="product">
+          <div class="product-image">📓</div>
+          <div class="product-info">
+            <h3>Premium Notebook</h3>
+            <p>A5 ruled notebook with 200 pages and a durable cover.</p>
+            <div class="price-row">
+              <span class="price">₹249</span>
+              <button class="add-cart" onclick="addToCart()">Add to Cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-image">🖊️</div>
+          <div class="product-info">
+            <h3>Gel Pen Pack</h3>
+            <p>Set of 10 smooth-writing gel pens in assorted colors.</p>
+            <div class="price-row">
+              <span class="price">₹199</span>
+              <button class="add-cart" onclick="addToCart()">Add to Cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-image">📅</div>
+          <div class="product-info">
+            <h3>Daily Planner</h3>
+            <p>Undated planner for goals, tasks, habits and schedules.</p>
+            <div class="price-row">
+              <span class="price">₹399</span>
+              <button class="add-cart" onclick="addToCart()">Add to Cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-image">🎨</div>
+          <div class="product-info">
+            <h3>Art Supply Kit</h3>
+            <p>Color pencils, sketch pens, eraser, sharpener and ruler.</p>
+            <div class="price-row">
+              <span class="price">₹549</span>
+              <button class="add-cart" onclick="addToCart()">Add to Cart</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why Shop With Us?</h2>
+        <p>Quality products, simple shopping, and dependable service.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature">
+          <div style="font-size:40px;">🚚</div>
+          <h3>Fast Delivery</h3>
+          <p>Get your stationery delivered quickly to your doorstep.</p>
+        </div>
+
+        <div class="feature">
+          <div style="font-size:40px;">✅</div>
+          <h3>Quality Products</h3>
+          <p>Carefully selected notebooks, pens, and school supplies.</p>
+        </div>
+
+        <div class="feature">
+          <div style="font-size:40px;">💰</div>
+          <h3>Affordable Prices</h3>
+          <p>Great value for students, offices, and creative buyers.</p>
+        </div>
+
+        <div class="feature">
+          <div style="font-size:40px;">📞</div>
+          <h3>Friendly Support</h3>
+          <p>Contact us anytime for product or order assistance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact Us</h2>
+        <p>Have a question or bulk-order request? Send us a message.</p>
+      </div>
+
+      <form class="contact-form" onsubmit="sendMessage(event)">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="Enter your name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter your email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Write your message..." required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>PaperPoint</h4>
+          <p>Your trusted online stationery store for school, office, and art supplies.</p>
+        </div>
+
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Shop</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li>Email: support@paperpoint.com</li>
+            <li>Phone: +91 98765 43210</li>
+            <li>Location: Mumbai, India</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="copyright">
+        © 2026 PaperPoint. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let cartCount = 0;
+
+    function addToCart() {
+      cartCount++;
+      document.getElementById("cart-count").textContent = cartCount;
+      alert("Item added to cart!");
+    }
+
+    function sendMessage(event) {
+      event.preventDefault();
+      alert("Thank you! Your message has been sent.");
+      event.target.reset();
+    }
+  </script>
+
+</body>
+</html>
